@@ -516,6 +516,7 @@ namespace NorthWindCoreUnitTest_InMemory
         /// https://stackoverflow.com/questions/68903607/sql-server-connection-freezes-after-a-few-hundred-loops/68905947#68905947
         /// </summary>
         [TestMethod]
+        [Ignore]
         public void LargeLike()
         {
             var (contracts, exception) = SqlOperations1.ReadDBView("%nia");
