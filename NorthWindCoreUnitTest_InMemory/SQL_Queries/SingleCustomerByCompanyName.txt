@@ -1,0 +1,10 @@
+﻿var allCustomers = Context.Customers
+    .Include(customer => customer.CountryIdentifierNavigation)
+    .Include(customer => customer.Contact)
+    .ThenInclude(x => x.ContactDevices).ToList();
+
+var singleCustomer = Context.Customers
+    .Include(customer => customer.CountryIdentifierNavigation)
+    .Include(customer => customer.Contact)
+    .ThenInclude(x => x.ContactDevices)
+    .FirstOrDefault(customer => customer.CustomerIdentifier == 3);
