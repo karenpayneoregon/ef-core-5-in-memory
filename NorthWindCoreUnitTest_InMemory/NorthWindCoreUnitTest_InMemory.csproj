@@ -8,6 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="MainTest - Copy.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Json\ContactDevices.json" />
 	  <None Remove="Json\Contacts.json" />
 	  <None Remove="Json\Contacts1.json" />
@@ -35,6 +39,10 @@
 	  <Content Include="Json\Customers.json" />
 	  <Content Include="Json\LotsOfData.json" />
 	  <Content Include="Json\Orders.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="MainTest - Copy.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

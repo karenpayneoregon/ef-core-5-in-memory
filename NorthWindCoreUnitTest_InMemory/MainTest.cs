@@ -56,11 +56,7 @@ namespace NorthWindCoreUnitTest_InMemory
         [TestTraits(Trait.StudentWork)]
         public void CustomerReadAll()
         {
-            // Discuss
-            //var customers = Context.Customers.IgnoreQueryFilters().ToList();
 
-            var customers = Context.Customers.ToList();
-            Assert.AreEqual(customers.Count, 91);
 
         }
 
@@ -72,12 +68,7 @@ namespace NorthWindCoreUnitTest_InMemory
         public void CustomerReadWhereCountryIsMexico()
         {
 
-            var customers = Context
-                .Customers
-                .Where(customer => customer.CountryIdentifier == 12)
-                .ToList();
 
-            Assert.AreEqual(customers.Count, 6);
 
         }
 
@@ -89,11 +80,7 @@ namespace NorthWindCoreUnitTest_InMemory
         public void CustomerReadWhereCountryIsMexicoAndIsOwner()
         {
 
-            var customers = Context.Customers.IgnoreQueryFilters()
-                .Where(customer => 
-                    customer.CountryIdentifier == 12 && customer.ContactTypeIdentifier == 7).ToList();
 
-            Assert.AreEqual(customers.Count, 4);
 
         }
 
@@ -105,15 +92,7 @@ namespace NorthWindCoreUnitTest_InMemory
         [TestMethod] [TestTraits(Trait.StudentWork)]
         public void ContactsReadAll()
         {
-            var contacts = Context.Contacts.ToList();
-
-            Assert.AreEqual(contacts.Count,91);
-
-            /*
-             * Ensure all contact types are populated.
-             * This is more of a validation of the json rather than the database
-             * which we are not using.             */
-            Assert.IsTrue(contacts.All(currentContact => currentContact.ContactTypeIdentifierNavigation is not null));
+           
 
         }
 
@@ -127,15 +106,6 @@ namespace NorthWindCoreUnitTest_InMemory
         public void ContactsReadWhereIn()
         {
 
-            List<int> identifiers = new() { 7, 12 };
-
-            var contacts = Context
-                .Contacts
-                .Where(currentContact => 
-                    currentContact.ContactTypeIdentifier.HasValue && 
-                    identifiers.Contains(currentContact.ContactTypeIdentifier ?? 0)).ToList();
-
-            Assert.AreEqual(contacts.Count,33);
 
         }
         
@@ -146,22 +116,7 @@ namespace NorthWindCoreUnitTest_InMemory
         [TestTraits(Trait.StudentWorkCrud)]
         public void AddSingleNewCustomer()
         {
-            Context.Entry(SingleContact).State = EntityState.Added;
 
-            var customer = new Customers()
-            {
-                CompanyName = "Karen's coffee shop",
-                Contact = SingleContact,
-                CountryIdentifier = 20,
-                CountryIdentifierNavigation = new Countries() { Name = "USA" }
-            };
-
-            Context.Entry(customer).State = EntityState.Added;
-
-            var saveChangesCount = Context.SaveChanges();
-
-            Assert.IsTrue(saveChangesCount == 2,
-                "Expect one customer and one contact to be added.");
 
         }
 
@@ -170,24 +125,6 @@ namespace NorthWindCoreUnitTest_InMemory
         public void CustomersAddRange()
         {
 
-            using var context = new NorthwindContext(dbContextRemoveOptions);
-
-            context.Customers.AddRange(MockedInMemoryCustomers());
-            context.Contacts.AddRange(MockedInMemoryContacts());
-
-            context.SaveChanges();
-
-            Assert.IsTrue(
-                context.Customers.Count() == 20 &&
-                context.Customers.ToList().All(currentCustomer => currentCustomer.Contact is not null)
-            );
-
-            var someCustomers = context.Customers.Take(3).ToList();
-
-            context.Customers.RemoveRange(someCustomers);
-            context.SaveChanges();
-
-            Assert.AreEqual(context.Customers.Count(), 17);
 
 
         }
@@ -199,12 +136,7 @@ namespace NorthWindCoreUnitTest_InMemory
         public void CustomersRemoveRange()
         {
             
-            var someCustomers = Context.Customers.Take(3).ToList();
 
-            Context.Customers.RemoveRange(someCustomers);
-            Context.SaveChanges();
-            
-            Assert.AreEqual(Context.Customers.Count(), 88);
 
         }
 
@@ -224,7 +156,7 @@ namespace NorthWindCoreUnitTest_InMemory
         /// </remarks>
         [TestMethod]
         [TestTraits(Trait.Filtering)]
-        //[Ignore]
+        [Ignore]
         public void FilteredInclude()
         {
 
