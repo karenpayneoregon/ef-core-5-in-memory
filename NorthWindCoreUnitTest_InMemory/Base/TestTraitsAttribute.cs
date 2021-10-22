@@ -21,7 +21,10 @@ namespace NorthWindCoreUnitTest_InMemory.Base
         Filtering,
         LikeConditions,
         Warming,
-        StudentWork
+        StudentWork,
+        StudentWorkCrud,
+        StudentWorkUtility
+
     }
     /// <summary>
     /// Declarative class for using Trait enum about for traits on test method.

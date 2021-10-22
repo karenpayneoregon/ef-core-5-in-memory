@@ -92,7 +92,10 @@ namespace NorthWindCoreLibrary.Data
         private static void StandardConnection(DbContextOptionsBuilder optionsBuilder)
         {
             var config = ReadAppsettings(out var builder);
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DatabaseConnection"));
+
+            optionsBuilder.UseSqlServer(Environment.UserName == "PayneK" ? 
+                config.GetConnectionString("DatabaseConnection").Replace("_NOT", "") : 
+                config.GetConnectionString("DatabaseConnection"));
         }
         /// <summary>
         /// Read connection string from appsettings.json
@@ -109,6 +112,7 @@ namespace NorthWindCoreLibrary.Data
         {
             builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             IConfigurationRoot config = builder.Build();
+
 
             return config; // connection string
         }

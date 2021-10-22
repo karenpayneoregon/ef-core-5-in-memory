@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,7 +74,6 @@ namespace NorthWindCoreUnitTest_InMemory
 
             var customers = Context
                 .Customers
-                .IgnoreQueryFilters()
                 .Where(customer => customer.CountryIdentifier == 12)
                 .ToList();
 
@@ -97,6 +97,11 @@ namespace NorthWindCoreUnitTest_InMemory
 
         }
 
+        /// <summary>
+        /// Read all <see cref="Contacts"/>
+        ///     Validate record count (normally done using a data provider)
+        ///     Validate all contacts have their contact type property populates
+        /// </summary>
         [TestMethod] [TestTraits(Trait.StudentWork)]
         public void ContactsReadAll()
         {
@@ -128,17 +133,17 @@ namespace NorthWindCoreUnitTest_InMemory
                 .Contacts
                 .Where(currentContact => 
                     currentContact.ContactTypeIdentifier.HasValue && 
-                    identifiers.Contains(currentContact.ContactTypeIdentifier ?? default(int))).ToList();
+                    identifiers.Contains(currentContact.ContactTypeIdentifier ?? 0)).ToList();
 
             Assert.AreEqual(contacts.Count,33);
 
         }
-
+        
         /// <summary>
         /// Mockup for adding a single <see cref="Customers"/>
         /// </summary>
         [TestMethod]
-        [TestTraits(Trait.CRUD)]
+        [TestTraits(Trait.StudentWorkCrud)]
         public void AddSingleNewCustomer()
         {
             Context.Entry(SingleContact).State = EntityState.Added;
@@ -161,7 +166,7 @@ namespace NorthWindCoreUnitTest_InMemory
         }
 
         [TestMethod]
-        [TestTraits(Trait.CRUD)]
+        [TestTraits(Trait.StudentWorkCrud)]
         public void CustomersAddRange()
         {
 
@@ -186,8 +191,11 @@ namespace NorthWindCoreUnitTest_InMemory
 
 
         }
+        /// <summary>
+        /// There are 91 customers, remove a range of customers and validate
+        /// </summary>
         [TestMethod]
-        [TestTraits(Trait.CRUD)]
+        [TestTraits(Trait.StudentWorkCrud)]
         public void CustomersRemoveRange()
         {
             
@@ -216,7 +224,7 @@ namespace NorthWindCoreUnitTest_InMemory
         /// </remarks>
         [TestMethod]
         [TestTraits(Trait.Filtering)]
-        [Ignore]
+        //[Ignore]
         public void FilteredInclude()
         {
 
@@ -226,7 +234,7 @@ namespace NorthWindCoreUnitTest_InMemory
 
             var customersList = data.Customers.AsNoTracking()
                 .Include(customer => customer.Orders)
-                    .Where(x => x.CountryIdentifier == germanyCountryIdentifier)
+                    .Where(currentCustomer => currentCustomer.CountryIdentifier == germanyCountryIdentifier)
                 .ToList();
 
             Assert.IsTrue(customersList.Count == 11);
@@ -255,16 +263,25 @@ namespace NorthWindCoreUnitTest_InMemory
                 .FirstOrDefault(customer => customer.CustomerIdentifier == customerIdentifier);
 
 
-            Assert.AreEqual(singleCustomer.CompanyName, "Antonio Moreno Taquería");
-            Assert.AreEqual(singleCustomer.CountryIdentifierNavigation.Name, "Mexico");
-            Assert.AreEqual(singleCustomer.Contact.FirstName, "Antonio");
-            Assert.AreEqual(singleCustomer.Contact.LastName, "Moreno");
-            Assert.IsTrue(singleCustomer.Contact.ContactDevices.FirstOrDefault().PhoneTypeIdentifierNavigation.PhoneTypeDescription == "Office");
-            Assert.AreEqual(singleCustomer.Contact.ContactDevices.FirstOrDefault().PhoneNumber, "(171) 555-7788");
+
+            /*
+             * Null-conditional operators ?. and ?[]
+             * https://docs.fluentvalidation.net/en/latest/built-in-validators.html
+             */
+
+            Assert.AreEqual(singleCustomer?.CompanyName, "Antonio Moreno Taquería");
+            Assert.AreEqual(singleCustomer?.CountryIdentifierNavigation.Name, "Mexico");
+            Assert.AreEqual(singleCustomer?.Contact.FirstName, "Antonio");
+            Assert.AreEqual(singleCustomer?.Contact.LastName, "Moreno");
+            Assert.IsTrue(singleCustomer?.Contact.ContactDevices.FirstOrDefault().PhoneTypeIdentifierNavigation.PhoneTypeDescription == "Office");
+            Assert.AreEqual(singleCustomer.Contact.ContactDevices.FirstOrDefault()?.PhoneNumber, "(171) 555-7788");
 
 
         }
 
+        /// <summary>
+        /// Office and home are the same
+        /// </summary>
         [TestMethod]
         [TestTraits(Trait.Relations)]
         public void LoadingTheSinkRelations()
@@ -277,19 +294,32 @@ namespace NorthWindCoreUnitTest_InMemory
 
             
             Debug.WriteLine($"{singleCustomer.Contact.FirstName} {singleCustomer.Contact.LastName}");
+            Debug.WriteLine(new string('_',20));
 
             foreach (var device in singleCustomer.Contact.ContactDevices)
             {
+                // ReSharper disable once PossibleInvalidOperationException
                 Debug.WriteLine($"{GetPhoneType(device.PhoneTypeIdentifier.Value)} {device.Contact.LastName} {device.PhoneNumber}");
+                Debug.WriteLine("");
             }
+
+            List<string> expected = new List<string>() { "(5) 555-4729", "(5) 555-4729", "456-987-1234" };
+
+            var phones = singleCustomer.Contact.ContactDevices.Select(x => x.PhoneNumber).ToList();
+
+            CollectionAssert.AreEqual(expected, phones);
+
         }
-
-
-
-
+        
 
         /// <summary>
-        /// Demonstrates sort by property name as a string
+        /// Demonstrates sort by property name as a string.
+        /// 
+        /// Why?
+        /// Suppose we had a control populated with property names, this means
+        /// we need to have a way to query EF where conventionally we hard code
+        /// the property name. This solves this problem.
+        /// 
         /// </summary>
         [TestMethod]
         [TestTraits(Trait.CustomSorting)]
@@ -299,7 +329,7 @@ namespace NorthWindCoreUnitTest_InMemory
             List<Customers> customersList = Context.Customers
                 .Include(customer => customer.CountryIdentifierNavigation)
                 .Include(customer => customer.Contact)
-                .ThenInclude(contact => contact.ContactDevices)
+                .ThenInclude(currentContact => currentContact.ContactDevices)
                 .ThenInclude(devices => devices.PhoneTypeIdentifierNavigation)
                 .ToList()
                 .SortByPropertyName("CompanyName", SortDirection.Descending);
@@ -307,6 +337,14 @@ namespace NorthWindCoreUnitTest_InMemory
             Assert.IsTrue(customersList.FirstOrDefault().City == "Warszawa");
             Assert.IsTrue(customersList.LastOrDefault().City == "Berlin");
 
+            StringBuilder builder = new();
+
+            foreach (var item in customersList)
+            {
+                builder.AppendLine($"{item.CompanyName,-45}{item.City}");
+            }
+
+            File.WriteAllText(nameof(CustomerCustomSort_City) + ".txt", builder.ToString());
 
         }
 
@@ -326,14 +364,14 @@ namespace NorthWindCoreUnitTest_InMemory
         ///  - ToQueryString is new, there may be some spots where it does not work as intend
         /// </summary>
         [TestMethod]
-        [TestTraits(Trait.Utility)]
+        [TestTraits(Trait.StudentWorkUtility)]
         public void GetQueryString()
         {
             using var context = new NorthwindContext();
             var query = context.Customers
                 .Include(customer => customer.CountryIdentifierNavigation)
                 .Include(customer => customer.Contact)
-                .ThenInclude(contact => contact.ContactDevices)
+                .ThenInclude(currentContact => currentContact.ContactDevices)
                 .ThenInclude(devices => devices.PhoneTypeIdentifierNavigation).ToQueryString();
 
             Debug.WriteLine(query);
@@ -350,6 +388,11 @@ namespace NorthWindCoreUnitTest_InMemory
 
         /// <summary>
         /// Find by primary key
+        /// Finds an entity with the given primary key value
+        /// https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.dbcontext.find?view=efcore-5.0
+        ///
+        /// This is more efficient than using FirstOrDefault which is generic accepting a predicate while the Find
+        /// method works with a indexed primary key which first checks cached data and if not found queries the database table
         /// </summary>
         [TestMethod]
         [TestTraits(Trait.AccessTrackedEntities)]
@@ -377,7 +420,7 @@ namespace NorthWindCoreUnitTest_InMemory
                 FirstName = firstName
             };
 
-            Contacts contact1 = new Contacts()
+            Contacts contact1 = new()
             {
                 ContactId = 1,
                 FirstName = "Bick",
@@ -390,7 +433,7 @@ namespace NorthWindCoreUnitTest_InMemory
 
             // get current first name
             var currentFirstName = Context.Entry(SingleContact)
-                .Property(contact => contact.FirstName).CurrentValue;
+                .Property(currentContact => currentContact.FirstName).CurrentValue;
 
             Assert.AreEqual(currentFirstName, firstName);
 
@@ -402,7 +445,7 @@ namespace NorthWindCoreUnitTest_InMemory
 
             // get original first name
             var originalFirstName = Context.Entry(SingleContact)
-                .Property(contact => contact.FirstName).OriginalValue;
+                .Property(currentContact => currentContact.FirstName).OriginalValue;
 
             // assert we got the original value
             Assert.IsTrue(originalFirstName == firstName);
@@ -490,11 +533,11 @@ namespace NorthWindCoreUnitTest_InMemory
             Context.Customers.AddRange(MockedInMemoryCustomers());
             Context.SaveChanges();
 
-            List<Customers> results = Context.Customers
+            List<Customers> customersList = Context.Customers
                 .Where(customer => EF.Functions.Like(customer.CompanyName, "%S.A."))
                 .ToList();
 
-            Assert.AreEqual(results.Count, 1);
+            Assert.AreEqual(customersList.Count, 1);
         }
 
         [TestMethod]
@@ -513,6 +556,13 @@ namespace NorthWindCoreUnitTest_InMemory
 
         }
 
+        /// <summary>
+        /// Change a date property value
+        /// </summary>
+        /// <remarks>
+        /// Side note, we can work with a modified date/time using shadow properties
+        /// https://social.technet.microsoft.com/wiki/contents/articles/53662.entity-framework-core-shadow-properties-c.aspx
+        /// </remarks>
         [TestMethod]
         [TestTraits(Trait.AccessTrackedEntities)]
         [Ignore]
@@ -562,7 +612,7 @@ namespace NorthWindCoreUnitTest_InMemory
 
         #endregion
 
-        #region Basic fluent validation 
+        #region fluent validation https://docs.fluentvalidation.net/en/latest/built-in-validators.html
 
         /// <summary>
         /// No Assert required, on failure an exception is thrown
@@ -645,8 +695,6 @@ namespace NorthWindCoreUnitTest_InMemory
 
             Assert.AreEqual(contracts.Count, 4704);
         }
-
-
 
     }
 }
