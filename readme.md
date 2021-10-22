@@ -8,3 +8,9 @@ There are 25 unit test, 23 will run with a database while only 17 run without a 
 ![img](assets/LearnWithKaren.png)
 
 ![img](assets/efcore_csharp.png)
+
+
+
+
+![img](assets/ViewEdit.png)
+
