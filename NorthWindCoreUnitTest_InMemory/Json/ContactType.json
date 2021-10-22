@@ -1,0 +1,93 @@
+[
+  {
+    "ContactTypeIdentifier": 1,
+    "ContactTitle": "Accounting Manager",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 2,
+    "ContactTitle": "Assistant Sales Agent",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 3,
+    "ContactTitle": "Assistant Sales Representative",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 4,
+    "ContactTitle": "Marketing Assistant",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 5,
+    "ContactTitle": "Marketing Manager",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 6,
+    "ContactTitle": "Order Administrator",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 7,
+    "ContactTitle": "Owner",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 8,
+    "ContactTitle": "Owner/Marketing Assistant",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 9,
+    "ContactTitle": "Sales Agent",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 10,
+    "ContactTitle": "Sales Associate",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 11,
+    "ContactTitle": "Sales Manager",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 12,
+    "ContactTitle": "Sales Representative",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  },
+  {
+    "ContactTypeIdentifier": 13,
+    "ContactTitle": "Vice President, Sales",
+    "Contacts": [],
+    "Customers": [],
+    "Employees": []
+  }
+]

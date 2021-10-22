@@ -1,0 +1,149 @@
+[
+  {
+    "CountryIdentifier": 1,
+    "Name": "Argentina",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 2,
+    "Name": "Austria",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 3,
+    "Name": "Belgium",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 4,
+    "Name": "Brazil",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 5,
+    "Name": "Canada",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 6,
+    "Name": "Denmark",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 7,
+    "Name": "Finland",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 8,
+    "Name": "France",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 9,
+    "Name": "Germany",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 10,
+    "Name": "Ireland",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 11,
+    "Name": "Italy",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 12,
+    "Name": "Mexico",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 13,
+    "Name": "Norway",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 14,
+    "Name": "Poland",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 15,
+    "Name": "Portugal",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 16,
+    "Name": "Spain",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 17,
+    "Name": "Sweden",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 18,
+    "Name": "Switzerland",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 19,
+    "Name": "UK",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 20,
+    "Name": "USA",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  },
+  {
+    "CountryIdentifier": 21,
+    "Name": "Venezuela",
+    "Customers": [],
+    "Employees": [],
+    "Suppliers": []
+  }
+]

@@ -133,6 +133,8 @@ namespace NorthWindCoreLibrary.Data
             modelBuilder.ApplyConfiguration(new SuppliersConfiguration());
             modelBuilder.ApplyConfiguration(new TerritoriesConfiguration());
 
+            //modelBuilder.Entity<Customers>().HasQueryFilter(x => x.ContactTypeIdentifier == 7);
+
             OnModelCreatingPartial(modelBuilder);
         }
 

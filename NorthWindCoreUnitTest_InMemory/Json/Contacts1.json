@@ -411,7 +411,7 @@
     "ContactId": 52,
     "FirstName": "Karin",
     "LastName": "Josephs",
-    "ContactTypeIdentifier": 1,
+    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -499,7 +499,7 @@
     "ContactId": 63,
     "FirstName": "Yoshi",
     "LastName": "Tannamuri",
-    "ContactTypeIdentifier": 1,
+    "ContactTypeIdentifier": 4,
     "ContactDevices": [],
     "Customers": []
   },

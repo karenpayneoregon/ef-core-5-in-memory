@@ -62,7 +62,12 @@ namespace NorthWindCoreUnitTest_InMemory
                 TestContext.TestName == nameof(LoadingTheSinkRelations) ||
                 TestContext.TestName == nameof(FindByPrimaryKey) ||
                 TestContext.TestName == nameof(CustomerCustomSort_City) ||
-                TestContext.TestName == nameof(CustomersRemoveRange) ||
+                TestContext.TestName == nameof(CustomersRemoveRange) || 
+                TestContext.TestName == nameof(CustomerReadAll) ||
+                TestContext.TestName == nameof(CustomerReadWhereCountryIsMexico) ||
+                TestContext.TestName == nameof(CustomerReadWhereCountryIsMexicoAndIsOwner) ||
+                TestContext.TestName == nameof(ContactsReadAll) ||
+                TestContext.TestName == nameof(ContactsReadWhereIn) ||
                 TestContext.TestName == nameof(GetQueryString)) { LoadJoinedData(); }
 
             if (TestContext.TestName == nameof(FilteredInclude))

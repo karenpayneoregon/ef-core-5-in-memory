@@ -8,13 +8,33 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Json\ContactDevices.json" />
+	  <None Remove="Json\Contacts.json" />
+	  <None Remove="Json\Contacts1.json" />
+	  <None Remove="Json\ContactType.json" />
+	  <None Remove="Json\Countries.json" />
+	  <None Remove="Json\Customers.json" />
+	  <None Remove="Json\LotsOfData.json" />
+	  <None Remove="Json\Orders.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Content Include="bin\Debug\net5.0\Json\ContactDevices.json" />
 	  <Content Include="bin\Debug\net5.0\Json\Contacts.json" />
 	  <Content Include="bin\Debug\net5.0\Json\Contacts1.json" />
 	  <Content Include="bin\Debug\net5.0\Json\ContactType.json" />
 	  <Content Include="bin\Debug\net5.0\Json\Countries.json" />
 	  <Content Include="bin\Debug\net5.0\Json\Customers.json" />
+	  <Content Include="bin\Debug\net5.0\Json\LotsOfData.json" />
 	  <Content Include="bin\Debug\net5.0\Json\Orders.json" />
+	  <Content Include="Json\ContactDevices.json" />
+	  <Content Include="Json\Contacts.json" />
+	  <Content Include="Json\Contacts1.json" />
+	  <Content Include="Json\ContactType.json" />
+	  <Content Include="Json\Countries.json" />
+	  <Content Include="Json\Customers.json" />
+	  <Content Include="Json\LotsOfData.json" />
+	  <Content Include="Json\Orders.json" />
 	</ItemGroup>
 
 	<ItemGroup>

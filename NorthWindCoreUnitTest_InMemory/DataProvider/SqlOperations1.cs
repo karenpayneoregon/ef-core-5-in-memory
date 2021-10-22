@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace NorthWindCoreUnitTest_InMemory.DataProvider
 {
@@ -14,6 +16,23 @@ namespace NorthWindCoreUnitTest_InMemory.DataProvider
         public static string ConnectionString =
             "Data Source=.\\SQLEXPRESS;Initial Catalog=PaginationExample;Integrated Security=True";
 
+        public static (List<Contract>, Exception exception) ReadJsonView(string firstNameValue)
+        {
+            List<Contract> contracts = new();
+            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Json", "LotsOfData.json");
+            var json = File.ReadAllText(fileName);
+
+            try
+            {
+                contracts = JsonConvert.DeserializeObject<List<Contract>>(json);
+                return (contracts, null);
+            }
+            catch (Exception exception)
+            {
+                return (null, exception);
+            }
+            
+        }
 
         public static (List<Contract>, Exception exception) ReadDBView(string firstNameValue)
         {

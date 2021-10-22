@@ -79,6 +79,7 @@ namespace NorthWindCoreLibrary.Data
                 .WithMany(p => p.Customers)
                 .HasForeignKey(d => d.CountryIdentifier)
                 .HasConstraintName("FK_Customers_Countries");
+
         }
     }
 }

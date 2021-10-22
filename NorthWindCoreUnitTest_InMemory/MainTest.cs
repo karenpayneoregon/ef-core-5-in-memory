@@ -21,6 +21,20 @@ using Customers = NorthWindCoreLibrary.Models.Customers;
 
 namespace NorthWindCoreUnitTest_InMemory
 {
+    /// <summary>
+    /// Basic to intermediate code samples for working with EF Core 5 where data comes from several json files
+    /// under the unit test executable, Json folder
+    ///
+    /// DO NOT alter the Json files under the executable path unless you understand the consequences which
+    /// are multiple test methods rely on the data in these json files.
+    ///
+    /// Karen notes:
+    ///     Talk about HasQueryFilter/IgnoreQueryFilters
+    ///     ToQueryString not working for in-memory testing
+    ///
+    /// If a developer does not have issues connecting to the NorthWind2020 database
+    /// a few steps will allow you to run ignored test methods
+    /// </summary>
     [TestClass]
     public partial class MainTest : TestBase
     {
@@ -33,6 +47,93 @@ namespace NorthWindCoreUnitTest_InMemory
         {
             ContactOperations.Warmup();
         }
+
+        /// <summary>
+        /// Read all customers into a list of <see cref="Customers"/>
+        /// </summary>
+        [TestMethod]
+        [TestTraits(Trait.StudentWork)]
+        public void CustomerReadAll()
+        {
+            // Discuss
+            //var customers = Context.Customers.IgnoreQueryFilters().ToList();
+
+            var customers = Context.Customers.ToList();
+            Assert.AreEqual(customers.Count, 91);
+
+        }
+
+        /// <summary>
+        /// Get all customers from Mexico
+        /// </summary>
+        [TestMethod]
+        [TestTraits(Trait.StudentWork)]
+        public void CustomerReadWhereCountryIsMexico()
+        {
+
+            var customers = Context
+                .Customers
+                .IgnoreQueryFilters()
+                .Where(customer => customer.CountryIdentifier == 12)
+                .ToList();
+
+            Assert.AreEqual(customers.Count, 6);
+
+        }
+
+        /// <summary>
+        /// Get all customers from Mexico with contact type of Owner
+        /// </summary>
+        [TestMethod]
+        [TestTraits(Trait.StudentWork)]
+        public void CustomerReadWhereCountryIsMexicoAndIsOwner()
+        {
+
+            var customers = Context.Customers.IgnoreQueryFilters()
+                .Where(customer => 
+                    customer.CountryIdentifier == 12 && customer.ContactTypeIdentifier == 7).ToList();
+
+            Assert.AreEqual(customers.Count, 4);
+
+        }
+
+        [TestMethod] [TestTraits(Trait.StudentWork)]
+        public void ContactsReadAll()
+        {
+            var contacts = Context.Contacts.ToList();
+
+            Assert.AreEqual(contacts.Count,91);
+
+            /*
+             * Ensure all contact types are populated.
+             * This is more of a validation of the json rather than the database
+             * which we are not using.             */
+            Assert.IsTrue(contacts.All(currentContact => currentContact.ContactTypeIdentifierNavigation is not null));
+
+        }
+
+        /// <summary>
+        /// Get all contacts of type
+        ///     Owner 7
+        ///     Sales Representative 12
+        /// </summary>
+        [TestMethod]
+        [TestTraits(Trait.StudentWork)]
+        public void ContactsReadWhereIn()
+        {
+
+            List<int> identifiers = new() { 7, 12 };
+
+            var contacts = Context
+                .Contacts
+                .Where(currentContact => 
+                    currentContact.ContactTypeIdentifier.HasValue && 
+                    identifiers.Contains(currentContact.ContactTypeIdentifier ?? default(int))).ToList();
+
+            Assert.AreEqual(contacts.Count,33);
+
+        }
+
         /// <summary>
         /// Mockup for adding a single <see cref="Customers"/>
         /// </summary>
@@ -73,13 +174,14 @@ namespace NorthWindCoreUnitTest_InMemory
 
             Assert.IsTrue(
                 context.Customers.Count() == 20 &&
-                context.Customers.ToList().All(x => x.Contact is not null)
+                context.Customers.ToList().All(currentCustomer => currentCustomer.Contact is not null)
             );
 
             var someCustomers = context.Customers.Take(3).ToList();
 
             context.Customers.RemoveRange(someCustomers);
             context.SaveChanges();
+
             Assert.AreEqual(context.Customers.Count(), 17);
 
 
@@ -88,10 +190,14 @@ namespace NorthWindCoreUnitTest_InMemory
         [TestTraits(Trait.CRUD)]
         public void CustomersRemoveRange()
         {
+            
             var someCustomers = Context.Customers.Take(3).ToList();
+
             Context.Customers.RemoveRange(someCustomers);
             Context.SaveChanges();
+            
             Assert.AreEqual(Context.Customers.Count(), 88);
+
         }
 
         /// <summary>
@@ -113,7 +219,9 @@ namespace NorthWindCoreUnitTest_InMemory
         [Ignore]
         public void FilteredInclude()
         {
+
             var germanyCountryIdentifier = 9;
+
             using var data = new NorthwindContext();
 
             var customersList = data.Customers.AsNoTracking()
@@ -122,6 +230,7 @@ namespace NorthWindCoreUnitTest_InMemory
                 .ToList();
 
             Assert.IsTrue(customersList.Count == 11);
+
         }
 
 
@@ -166,7 +275,9 @@ namespace NorthWindCoreUnitTest_InMemory
                 .IncludeContactsDevicesCountry()
                 .FirstOrDefault(customer => customer.CustomerIdentifier == customerIdentifier);
 
+            
             Debug.WriteLine($"{singleCustomer.Contact.FirstName} {singleCustomer.Contact.LastName}");
+
             foreach (var device in singleCustomer.Contact.ContactDevices)
             {
                 Debug.WriteLine($"{GetPhoneType(device.PhoneTypeIdentifier.Value)} {device.Contact.LastName} {device.PhoneNumber}");
@@ -177,6 +288,9 @@ namespace NorthWindCoreUnitTest_InMemory
 
 
 
+        /// <summary>
+        /// Demonstrates sort by property name as a string
+        /// </summary>
         [TestMethod]
         [TestTraits(Trait.CustomSorting)]
         public void CustomerCustomSort_City()
@@ -311,10 +425,6 @@ namespace NorthWindCoreUnitTest_InMemory
             Assert.IsNull(clonedContact.LastName);
         }
 
-        /*
-         * Karen - next code samples to work on
-         * https://docs.microsoft.com/en-us/ef/core/change-tracking/entity-entries#using-changetrackerentries-to-access-all-tracked-entities
-         */
 
         #region Working with live data, same can be done with in-memory
 
@@ -512,14 +622,17 @@ namespace NorthWindCoreUnitTest_InMemory
 
         /// <summary>
         /// Out of place code sample
+        /// 
         /// Written to answer a forum question which was accepted.
-        /// https://stackoverflow.com/questions/68903607/sql-server-connection-freezes-after-a-few-hundred-loops/68905947#68905947
+        ///
+        ///10/21/2021 Karen changed code to read from json file rather than SQL-Server
+        /// 
         /// </summary>
         [TestMethod]
-        [Ignore]
+        //[Ignore]
         public void LargeLike()
         {
-            var (contracts, exception) = SqlOperations1.ReadDBView("%nia");
+            var (contracts, exception) = SqlOperations1.ReadJsonView("%nia");
 
             if (contracts.Count > 0 && exception is null)
             {
@@ -529,6 +642,8 @@ namespace NorthWindCoreUnitTest_InMemory
             {
                 Debug.WriteLine(exception is not null ? exception.Message : "No matches");
             }
+
+            Assert.AreEqual(contracts.Count, 4704);
         }
 
 

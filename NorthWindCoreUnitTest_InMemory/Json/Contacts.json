@@ -3,7 +3,6 @@
     "ContactId": 1,
     "FirstName": "Maria",
     "LastName": "Anders",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -11,7 +10,6 @@
     "ContactId": 2,
     "FirstName": "Ana",
     "LastName": "Trujillo",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -19,7 +17,6 @@
     "ContactId": 3,
     "FirstName": "Antonio",
     "LastName": "Moreno",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -27,7 +24,6 @@
     "ContactId": 4,
     "FirstName": "Thomas",
     "LastName": "Hardy",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -35,7 +31,6 @@
     "ContactId": 5,
     "FirstName": "Christina",
     "LastName": "Berglund",
-    "ContactTypeIdentifier": 6,
     "ContactDevices": [],
     "Customers": []
   },
@@ -43,7 +38,6 @@
     "ContactId": 6,
     "FirstName": "Hanna",
     "LastName": "Moos",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -51,7 +45,6 @@
     "ContactId": 7,
     "FirstName": "Frédérique",
     "LastName": "Citeaux",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -59,7 +52,6 @@
     "ContactId": 8,
     "FirstName": "Martín",
     "LastName": "Sommer",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -67,7 +59,6 @@
     "ContactId": 9,
     "FirstName": "Laurence",
     "LastName": "Lebihan",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -75,7 +66,6 @@
     "ContactId": 10,
     "FirstName": "Victoria",
     "LastName": "Ashworth",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -83,7 +73,6 @@
     "ContactId": 11,
     "FirstName": "Patricio",
     "LastName": "Simpson",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -91,7 +80,6 @@
     "ContactId": 12,
     "FirstName": "Francisco",
     "LastName": "Chang",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -99,7 +87,6 @@
     "ContactId": 13,
     "FirstName": "Yang",
     "LastName": "Wang",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -107,7 +94,6 @@
     "ContactId": 14,
     "FirstName": "Elizabeth",
     "LastName": "Brown",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -115,7 +101,6 @@
     "ContactId": 15,
     "FirstName": "Sven",
     "LastName": "Ottlieb",
-    "ContactTypeIdentifier": 6,
     "ContactDevices": [],
     "Customers": []
   },
@@ -123,7 +108,6 @@
     "ContactId": 16,
     "FirstName": "Janine",
     "LastName": "Labrune",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -131,7 +115,6 @@
     "ContactId": 17,
     "FirstName": "Ann",
     "LastName": "Devon",
-    "ContactTypeIdentifier": 9,
     "ContactDevices": [],
     "Customers": []
   },
@@ -139,7 +122,6 @@
     "ContactId": 18,
     "FirstName": "Roland",
     "LastName": "Mendel",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -147,7 +129,6 @@
     "ContactId": 19,
     "FirstName": "Diego",
     "LastName": "Roel",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -155,7 +136,6 @@
     "ContactId": 20,
     "FirstName": "Martine",
     "LastName": "Rancé",
-    "ContactTypeIdentifier": 2,
     "ContactDevices": [],
     "Customers": []
   },
@@ -163,7 +143,6 @@
     "ContactId": 21,
     "FirstName": "Maria",
     "LastName": "Larsson",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -171,7 +150,6 @@
     "ContactId": 22,
     "FirstName": "Peter",
     "LastName": "Franken",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -179,7 +157,6 @@
     "ContactId": 23,
     "FirstName": "Carine",
     "LastName": "Schmitt",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -187,7 +164,6 @@
     "ContactId": 24,
     "FirstName": "Paolo",
     "LastName": "Accorti",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -195,7 +171,6 @@
     "ContactId": 25,
     "FirstName": "Lino",
     "LastName": "Rodriguez",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -203,7 +178,6 @@
     "ContactId": 26,
     "FirstName": "Eduardo",
     "LastName": "Saavedra",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -211,7 +185,6 @@
     "ContactId": 27,
     "FirstName": "José",
     "LastName": "Pedro Freyre",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -219,7 +192,6 @@
     "ContactId": 28,
     "FirstName": "Philip",
     "LastName": "Cramer",
-    "ContactTypeIdentifier": 10,
     "ContactDevices": [],
     "Customers": []
   },
@@ -227,7 +199,6 @@
     "ContactId": 29,
     "FirstName": "Daniel",
     "LastName": "Tonini",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -235,7 +206,6 @@
     "ContactId": 30,
     "FirstName": "Annette",
     "LastName": "Roulet",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -243,7 +213,6 @@
     "ContactId": 31,
     "FirstName": "Renate",
     "LastName": "Messner",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -251,7 +220,6 @@
     "ContactId": 32,
     "FirstName": "Giovanni",
     "LastName": "Rovelli",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -259,7 +227,6 @@
     "ContactId": 33,
     "FirstName": "Catherine",
     "LastName": "Dewey",
-    "ContactTypeIdentifier": 9,
     "ContactDevices": [],
     "Customers": []
   },
@@ -267,7 +234,6 @@
     "ContactId": 34,
     "FirstName": "Alexander",
     "LastName": "Feuer",
-    "ContactTypeIdentifier": 4,
     "ContactDevices": [],
     "Customers": []
   },
@@ -275,7 +241,6 @@
     "ContactId": 35,
     "FirstName": "Simon",
     "LastName": "Crowther",
-    "ContactTypeIdentifier": 10,
     "ContactDevices": [],
     "Customers": []
   },
@@ -283,7 +248,6 @@
     "ContactId": 36,
     "FirstName": "Yvonne",
     "LastName": "Moncada",
-    "ContactTypeIdentifier": 9,
     "ContactDevices": [],
     "Customers": []
   },
@@ -291,7 +255,6 @@
     "ContactId": 37,
     "FirstName": "Henriette",
     "LastName": "Pfalzheim",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -299,7 +262,6 @@
     "ContactId": 38,
     "FirstName": "Marie",
     "LastName": "Bertrand",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -307,7 +269,6 @@
     "ContactId": 39,
     "FirstName": "Guillermo",
     "LastName": "Fernández",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -315,7 +276,6 @@
     "ContactId": 40,
     "FirstName": "Georg",
     "LastName": "Pipps",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -323,7 +283,6 @@
     "ContactId": 41,
     "FirstName": "Isabel",
     "LastName": "de Castro",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -331,7 +290,6 @@
     "ContactId": 42,
     "FirstName": "Horst",
     "LastName": "Kloss",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -339,7 +297,6 @@
     "ContactId": 43,
     "FirstName": "Sergio",
     "LastName": "Gutiérrez",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -347,7 +304,6 @@
     "ContactId": 44,
     "FirstName": "Maurizio",
     "LastName": "Moroni",
-    "ContactTypeIdentifier": 10,
     "ContactDevices": [],
     "Customers": []
   },
@@ -355,7 +311,6 @@
     "ContactId": 45,
     "FirstName": "Michael",
     "LastName": "Holz",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -363,7 +318,6 @@
     "ContactId": 46,
     "FirstName": "Alejandra",
     "LastName": "Camino",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -371,7 +325,6 @@
     "ContactId": 47,
     "FirstName": "Jonas",
     "LastName": "Bergulfsen",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -379,7 +332,6 @@
     "ContactId": 48,
     "FirstName": "Hari",
     "LastName": "Kumar",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -387,7 +339,6 @@
     "ContactId": 49,
     "FirstName": "Jytte",
     "LastName": "Petersen",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -395,7 +346,6 @@
     "ContactId": 50,
     "FirstName": "Dominique",
     "LastName": "Perrier",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -403,7 +353,6 @@
     "ContactId": 51,
     "FirstName": "Pascale",
     "LastName": "Cartrain",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -411,7 +360,6 @@
     "ContactId": 52,
     "FirstName": "Karin",
     "LastName": "Josephs",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -419,7 +367,6 @@
     "ContactId": 53,
     "FirstName": "Miguel",
     "LastName": "Angel Paolino",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -427,7 +374,6 @@
     "ContactId": 54,
     "FirstName": "Palle",
     "LastName": "Ibsen",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -435,7 +381,6 @@
     "ContactId": 55,
     "FirstName": "Mary",
     "LastName": "Saveley",
-    "ContactTypeIdentifier": 9,
     "ContactDevices": [],
     "Customers": []
   },
@@ -443,7 +388,6 @@
     "ContactId": 56,
     "FirstName": "Paul",
     "LastName": "Henriot",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -451,7 +395,6 @@
     "ContactId": 57,
     "FirstName": "Rita",
     "LastName": "Müller",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -459,7 +402,6 @@
     "ContactId": 58,
     "FirstName": "Pirkko",
     "LastName": "Koskitalo",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -467,7 +409,6 @@
     "ContactId": 59,
     "FirstName": "Matti",
     "LastName": "Karttunen",
-    "ContactTypeIdentifier": 8,
     "ContactDevices": [],
     "Customers": []
   },
@@ -475,7 +416,6 @@
     "ContactId": 60,
     "FirstName": "Zbyszek",
     "LastName": "Piestrzeniewicz",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -483,7 +423,6 @@
     "ContactId": 61,
     "FirstName": "Rene",
     "LastName": "Phillips",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -491,7 +430,6 @@
     "ContactId": 62,
     "FirstName": "Elizabeth",
     "LastName": "Lincoln",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -499,7 +437,6 @@
     "ContactId": 63,
     "FirstName": "Yoshi",
     "LastName": "Tannamuri",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -507,7 +444,6 @@
     "ContactId": 64,
     "FirstName": "Jaime",
     "LastName": "Yorres",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -515,7 +451,6 @@
     "ContactId": 65,
     "FirstName": "Patricia",
     "LastName": "McKenna",
-    "ContactTypeIdentifier": 10,
     "ContactDevices": [],
     "Customers": []
   },
@@ -523,7 +458,6 @@
     "ContactId": 66,
     "FirstName": "Manuel",
     "LastName": "Pereira",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -531,7 +465,6 @@
     "ContactId": 67,
     "FirstName": "Jose",
     "LastName": "Pavarotti",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -539,7 +472,6 @@
     "ContactId": 68,
     "FirstName": "Helen",
     "LastName": "Bennett",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -547,7 +479,6 @@
     "ContactId": 69,
     "FirstName": "Carlos",
     "LastName": "González",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -555,7 +486,6 @@
     "ContactId": 70,
     "FirstName": "Liu",
     "LastName": "Wong",
-    "ContactTypeIdentifier": 4,
     "ContactDevices": [],
     "Customers": []
   },
@@ -563,7 +493,6 @@
     "ContactId": 71,
     "FirstName": "Paula",
     "LastName": "Wilson",
-    "ContactTypeIdentifier": 3,
     "ContactDevices": [],
     "Customers": []
   },
@@ -571,7 +500,6 @@
     "ContactId": 72,
     "FirstName": "Felipe",
     "LastName": "Izquierdo",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -579,7 +507,6 @@
     "ContactId": 73,
     "FirstName": "Howard",
     "LastName": "Snyder",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -587,7 +514,6 @@
     "ContactId": 74,
     "FirstName": "Yoshi",
     "LastName": "Latimer",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -595,7 +521,6 @@
     "ContactId": 75,
     "FirstName": "Fran",
     "LastName": "Wilson",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -603,7 +528,6 @@
     "ContactId": 76,
     "FirstName": "Liz",
     "LastName": "Nixon",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -611,7 +535,6 @@
     "ContactId": 77,
     "FirstName": "Jean",
     "LastName": "Fresnière",
-    "ContactTypeIdentifier": 4,
     "ContactDevices": [],
     "Customers": []
   },
@@ -619,7 +542,6 @@
     "ContactId": 78,
     "FirstName": "Mario",
     "LastName": "Pontes",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -627,7 +549,6 @@
     "ContactId": 79,
     "FirstName": "Bernardo",
     "LastName": "Batista",
-    "ContactTypeIdentifier": 1,
     "ContactDevices": [],
     "Customers": []
   },
@@ -635,7 +556,6 @@
     "ContactId": 80,
     "FirstName": "Janete",
     "LastName": "Limeira",
-    "ContactTypeIdentifier": 2,
     "ContactDevices": [],
     "Customers": []
   },
@@ -643,7 +563,6 @@
     "ContactId": 81,
     "FirstName": "Pedro",
     "LastName": "Afonso",
-    "ContactTypeIdentifier": 10,
     "ContactDevices": [],
     "Customers": []
   },
@@ -651,7 +570,6 @@
     "ContactId": 82,
     "FirstName": "Aria",
     "LastName": "Cruz",
-    "ContactTypeIdentifier": 4,
     "ContactDevices": [],
     "Customers": []
   },
@@ -659,7 +577,6 @@
     "ContactId": 83,
     "FirstName": "André",
     "LastName": "Fonseca",
-    "ContactTypeIdentifier": 10,
     "ContactDevices": [],
     "Customers": []
   },
@@ -667,7 +584,6 @@
     "ContactId": 84,
     "FirstName": "Lúcia",
     "LastName": "Carvalho",
-    "ContactTypeIdentifier": 4,
     "ContactDevices": [],
     "Customers": []
   },
@@ -675,7 +591,6 @@
     "ContactId": 85,
     "FirstName": "Anabela",
     "LastName": "Domingues",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -683,7 +598,6 @@
     "ContactId": 86,
     "FirstName": "Paula",
     "LastName": "Parente",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   },
@@ -691,7 +605,6 @@
     "ContactId": 87,
     "FirstName": "Carlos",
     "LastName": "Hernández",
-    "ContactTypeIdentifier": 12,
     "ContactDevices": [],
     "Customers": []
   },
@@ -699,7 +612,6 @@
     "ContactId": 88,
     "FirstName": "John",
     "LastName": "Steel",
-    "ContactTypeIdentifier": 5,
     "ContactDevices": [],
     "Customers": []
   },
@@ -707,7 +619,6 @@
     "ContactId": 89,
     "FirstName": "Helvetius",
     "LastName": "Nagy",
-    "ContactTypeIdentifier": 10,
     "ContactDevices": [],
     "Customers": []
   },
@@ -715,7 +626,6 @@
     "ContactId": 90,
     "FirstName": "Karl",
     "LastName": "Jablonski",
-    "ContactTypeIdentifier": 7,
     "ContactDevices": [],
     "Customers": []
   },
@@ -723,7 +633,6 @@
     "ContactId": 91,
     "FirstName": "Art",
     "LastName": "Braunschweiger",
-    "ContactTypeIdentifier": 11,
     "ContactDevices": [],
     "Customers": []
   }
