@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityCoreExtensions", "EntityCoreExtensions\EntityCoreExtensions.csproj", "{392218DD-6430-40DD-ACA4-39CAB9E52D98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows Forms", "Windows Forms", "{86E88F4B-DF62-4B0D-AD67-37781A025AFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCoreDbExtensions", "EntityFrameworkCoreDbExtensions\EntityFrameworkCoreDbExtensions.csproj", "{E0E137B7-C0B0-4BA9-9C51-2207BDD24BAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,10 @@ Global
 		{392218DD-6430-40DD-ACA4-39CAB9E52D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{392218DD-6430-40DD-ACA4-39CAB9E52D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{392218DD-6430-40DD-ACA4-39CAB9E52D98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0E137B7-C0B0-4BA9-9C51-2207BDD24BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0E137B7-C0B0-4BA9-9C51-2207BDD24BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0E137B7-C0B0-4BA9-9C51-2207BDD24BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0E137B7-C0B0-4BA9-9C51-2207BDD24BAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,8 @@ Global
 		{B053EBDF-FE72-40B1-BC63-1C29043FD8F8} = {16CA3D56-A879-4048-A5B3-10C35829D429}
 		{4EE3F5DC-A48E-4C20-8310-771B84D5035F} = {B114C0EE-3EB7-4D23-97E7-F5AE291BEF2A}
 		{392218DD-6430-40DD-ACA4-39CAB9E52D98} = {16CA3D56-A879-4048-A5B3-10C35829D429}
+		{86E88F4B-DF62-4B0D-AD67-37781A025AFA} = {B114C0EE-3EB7-4D23-97E7-F5AE291BEF2A}
+		{E0E137B7-C0B0-4BA9-9C51-2207BDD24BAB} = {86E88F4B-DF62-4B0D-AD67-37781A025AFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58472139-AA99-437C-A5F5-B3F7FF808C20}
