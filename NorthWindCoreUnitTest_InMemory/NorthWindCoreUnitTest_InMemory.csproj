@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\EntityCoreExtensions\EntityCoreExtensions.csproj" />
 	  <ProjectReference Include="..\NorthWindCoreLibrary\NorthWindCoreLibrary.csproj" />
 	</ItemGroup>
 

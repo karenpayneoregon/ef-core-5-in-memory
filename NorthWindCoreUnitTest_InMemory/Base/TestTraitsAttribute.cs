@@ -23,8 +23,9 @@ namespace NorthWindCoreUnitTest_InMemory.Base
         Warming,
         StudentWork,
         StudentWorkCrud,
-        StudentWorkUtility
-
+        StudentWorkUtility,
+        OffBase,
+        EntityFrameworkExtensions
     }
     /// <summary>
     /// Declarative class for using Trait enum about for traits on test method.

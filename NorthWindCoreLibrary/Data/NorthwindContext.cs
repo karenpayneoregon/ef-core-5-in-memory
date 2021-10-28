@@ -137,7 +137,8 @@ namespace NorthWindCoreLibrary.Data
             modelBuilder.ApplyConfiguration(new SuppliersConfiguration());
             modelBuilder.ApplyConfiguration(new TerritoriesConfiguration());
 
-            //modelBuilder.Entity<Customers>().HasQueryFilter(x => x.ContactTypeIdentifier == 7);
+            // Only customers from Germany
+            //modelBuilder.Entity<Customers>().HasQueryFilter(customer => customer.CountryIdentifier == 9);
 
             OnModelCreatingPartial(modelBuilder);
         }

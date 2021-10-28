@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EntityCoreExtensions;
 using FluentValidation.Results;
 using FluentValidation.TestHelper;
 using Microsoft.EntityFrameworkCore;
@@ -43,7 +44,7 @@ namespace NorthWindCoreUnitTest_InMemory
 
         [TestMethod]
         [TestTraits(Trait.Warming)]
-        [Ignore]
+        //[Ignore]
         public void A_Warmup()
         {
             ContactOperations.Warmup();
@@ -56,10 +57,43 @@ namespace NorthWindCoreUnitTest_InMemory
         [TestTraits(Trait.StudentWork)]
         public void CustomerReadAll()
         {
+            // Discuss
+            //var customers = Context.Customers.IgnoreQueryFilters().ToList();
 
+            var customers = Context.Customers.ToList();
+            Assert.AreEqual(customers.Count, 91);
 
         }
 
+        [TestMethod]
+        [TestTraits(Trait.OffBase)]
+        [Ignore]
+        public void Name1()
+        {
+            Customers customer = new() { CompanyName = "ABC" };
+
+            using var context = new NorthwindContext();
+
+            context.Entry(customer).State = EntityState.Added;
+
+            context.SaveChanges();
+
+        }
+        [TestMethod]
+        [TestTraits(Trait.OffBase)]
+        [Ignore]
+        public void Name2()
+        {
+            Customers customer = new() { CompanyName = "ABC" };
+
+            using (var context = new NorthwindContext())
+            {
+                context.Entry(customer).State = EntityState.Added;
+                context.Customers.Add(new Customers() { CompanyName = "DEF" });
+                context.SaveChanges();
+            }
+
+        }
         /// <summary>
         /// Get all customers from Mexico
         /// </summary>
@@ -68,7 +102,12 @@ namespace NorthWindCoreUnitTest_InMemory
         public void CustomerReadWhereCountryIsMexico()
         {
 
+            var customers = Context
+                .Customers
+                .Where(customer => customer.CountryIdentifier == 12)
+                .ToList();
 
+            Assert.AreEqual(customers.Count, 6);
 
         }
 
@@ -80,7 +119,13 @@ namespace NorthWindCoreUnitTest_InMemory
         public void CustomerReadWhereCountryIsMexicoAndIsOwner()
         {
 
+            List<Customers> customerList = Context.Customers
+                .Where(currentCustomer =>
+                    currentCustomer.CountryIdentifier == 12 && 
+                    currentCustomer.ContactTypeIdentifier == 7)
+                .ToList();
 
+            Assert.AreEqual(customerList.Count, 4);
 
         }
 
@@ -89,10 +134,17 @@ namespace NorthWindCoreUnitTest_InMemory
         ///     Validate record count (normally done using a data provider)
         ///     Validate all contacts have their contact type property populates
         /// </summary>
-        [TestMethod] [TestTraits(Trait.StudentWork)]
+        [TestMethod]
+        [TestTraits(Trait.StudentWork)]
         public void ContactsReadAll()
         {
-           
+            var contacts = Context.Contacts.ToList();
+
+            Assert.AreEqual(contacts.Count, 91);
+
+  
+            Assert.IsTrue(contacts.All(currentContact => 
+                currentContact.ContactTypeIdentifierNavigation is not null));
 
         }
 
@@ -106,9 +158,17 @@ namespace NorthWindCoreUnitTest_InMemory
         public void ContactsReadWhereIn()
         {
 
+            List<int> identifiers = new() { 7, 12 };
+
+            var contacts = Context.Contacts
+                .Where(currentContact =>
+                    currentContact.ContactTypeIdentifier.HasValue &&
+                    identifiers.Contains(currentContact.ContactTypeIdentifier ?? 0)).ToList();
+
+            Assert.AreEqual(contacts.Count, 33);
 
         }
-        
+
         /// <summary>
         /// Mockup for adding a single <see cref="Customers"/>
         /// </summary>
@@ -118,6 +178,23 @@ namespace NorthWindCoreUnitTest_InMemory
         {
 
 
+            Context.Entry(SingleContact).State = EntityState.Added;
+
+            var customer = new Customers()
+            {
+                CompanyName = "Karen's coffee shop",
+                Contact = SingleContact,
+                CountryIdentifier = 20,
+                CountryIdentifierNavigation = new Countries() { Name = "USA" }
+            };
+
+            Context.Entry(customer).State = EntityState.Added;
+
+            var saveChangesCount = Context.SaveChanges();
+
+            Assert.IsTrue(saveChangesCount == 2,
+                "Expect one customer and one contact to be added.");
+
         }
 
         [TestMethod]
@@ -125,6 +202,24 @@ namespace NorthWindCoreUnitTest_InMemory
         public void CustomersAddRange()
         {
 
+            using var context = new NorthwindContext(dbContextRemoveOptions);
+
+            context.Customers.AddRange(MockedInMemoryCustomers());
+            context.Contacts.AddRange(MockedInMemoryContacts());
+
+            context.SaveChanges();
+
+            Assert.IsTrue(
+                context.Customers.Count() == 20 &&
+                context.Customers.ToList().All(currentCustomer => currentCustomer.Contact is not null)
+            );
+
+            var someCustomers = context.Customers.Take(3).ToList();
+
+            context.Customers.RemoveRange(someCustomers);
+            context.SaveChanges();
+
+            Assert.AreEqual(context.Customers.Count(), 17);
 
 
         }
@@ -135,8 +230,13 @@ namespace NorthWindCoreUnitTest_InMemory
         [TestTraits(Trait.StudentWorkCrud)]
         public void CustomersRemoveRange()
         {
-            
 
+            var someCustomers = Context.Customers.Take(3).ToList();
+
+            Context.Customers.RemoveRange(someCustomers);
+            Context.SaveChanges();
+
+            Assert.AreEqual(Context.Customers.Count(), 88);
 
         }
 
@@ -156,7 +256,7 @@ namespace NorthWindCoreUnitTest_InMemory
         /// </remarks>
         [TestMethod]
         [TestTraits(Trait.Filtering)]
-        [Ignore]
+        //[Ignore]
         public void FilteredInclude()
         {
 
@@ -224,9 +324,9 @@ namespace NorthWindCoreUnitTest_InMemory
                 .IncludeContactsDevicesCountry()
                 .FirstOrDefault(customer => customer.CustomerIdentifier == customerIdentifier);
 
-            
+
             Debug.WriteLine($"{singleCustomer.Contact.FirstName} {singleCustomer.Contact.LastName}");
-            Debug.WriteLine(new string('_',20));
+            Debug.WriteLine(new string('_', 20));
 
             foreach (var device in singleCustomer.Contact.ContactDevices)
             {
@@ -242,7 +342,59 @@ namespace NorthWindCoreUnitTest_InMemory
             CollectionAssert.AreEqual(expected, phones);
 
         }
-        
+
+        [TestMethod]
+        [TestTraits(Trait.EntityFrameworkExtensions)]
+        public void GetModelNamesTest()
+        {
+
+            List<string> modelNamesExpected = new List<string>()
+            {
+                "BusinessEntityPhone", "Categories", "ContactDevices", "Contacts", "ContactType", "Countries",
+                "Customers", "Employees", "EmployeeTerritories", "OrderDetails", "Orders", "PhoneType",
+                "Products", "Region", "Shippers", "Suppliers", "Territories"
+            };
+
+            List<string> modelNames = Context.GetModelNames().OrderBy(x => x).ToList();
+
+            CollectionAssert.AreEqual(modelNames, modelNamesExpected);
+
+            // must have permissions to read SQL-Server
+            //CollectionAssert.AreEqual(modelNames,SqlOperations.TableNames());
+
+        }
+
+        [TestMethod]
+        [TestTraits(Trait.EntityFrameworkExtensions)]
+        public void GetColumnNamesForModelTest()
+        {
+
+            List<string> expectedColumnList = new ()
+            {
+                "City", "CompanyName", "ContactId", "ContactTypeIdentifier", "CountryIdentifier", "CustomerIdentifier", "Fax",
+                "ModifiedDate", "Phone", "PostalCode", "Region", "Street"
+            };
+
+            /*
+             * Work against Customers model
+             */
+            var modelName = Context.GetModelNames().FirstOrDefault(tableName => tableName == nameof(Customers));
+
+            /*
+             * Column names for model using ColumnNames DbContext extension method
+             */
+            var columnNames = Context.ColumnNames(modelName).OrderBy(column => column).ToList();
+            CollectionAssert.AreEqual(columnNames, expectedColumnList);
+
+            /*
+             * Column names from database to verify column names from ColumnNames DbContext extension method
+             * NOTE: Must have permissions to read from SQL-Server
+             */
+            var columns = SqlOperations.ColumnNamesForTable(modelName);
+            CollectionAssert.AreEqual(columns, expectedColumnList);
+
+        }
+
 
         /// <summary>
         /// Demonstrates sort by property name as a string.
@@ -347,7 +499,7 @@ namespace NorthWindCoreUnitTest_InMemory
             var changedFirstName = "Mary";
 
             // create a new Contact and save
-            Contacts contacts = new Contacts()
+            Contacts contacts = new ()
             {
                 FirstName = firstName
             };
@@ -406,7 +558,7 @@ namespace NorthWindCoreUnitTest_InMemory
 
         [TestMethod]
         [TestTraits(Trait.AccessTrackedEntities)]
-        [Ignore]
+        //[Ignore]
         public void FindAndLoadSingleCollection()
         {
             using var context = new NorthwindContext();
@@ -425,7 +577,7 @@ namespace NorthWindCoreUnitTest_InMemory
         /// </summary>
         [TestMethod]
         [TestTraits(Trait.AccessTrackedEntities)]
-        [Ignore]
+        //[Ignore]
         public void FindAndModifySingleEntry()
         {
             using var context = new NorthwindContext();
@@ -454,8 +606,7 @@ namespace NorthWindCoreUnitTest_InMemory
 
 
             Assert.AreEqual(results.Count, 2);
-
-
+            
         }
 
         [TestMethod]
@@ -497,7 +648,7 @@ namespace NorthWindCoreUnitTest_InMemory
         /// </remarks>
         [TestMethod]
         [TestTraits(Trait.AccessTrackedEntities)]
-        [Ignore]
+        //[Ignore]
         public void ChangeCurrentValueByType()
         {
             var expectedDate = new DateTime(2021, 7, 4);

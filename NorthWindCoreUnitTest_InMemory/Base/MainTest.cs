@@ -58,18 +58,25 @@ namespace NorthWindCoreUnitTest_InMemory
 
             annihilationList = new List<object>();
 
-            if (TestContext.TestName == nameof(LoadingRelations) || 
+            if (TestContext.TestName == nameof(LoadingRelations) ||
                 TestContext.TestName == nameof(LoadingTheSinkRelations) ||
                 TestContext.TestName == nameof(FindByPrimaryKey) ||
                 TestContext.TestName == nameof(CustomerCustomSort_City) ||
-                TestContext.TestName == nameof(CustomersRemoveRange) || 
+                TestContext.TestName == nameof(CustomersRemoveRange) ||
                 TestContext.TestName == nameof(CustomerReadAll) ||
                 TestContext.TestName == nameof(CustomerReadWhereCountryIsMexico) ||
                 TestContext.TestName == nameof(CustomerReadWhereCountryIsMexicoAndIsOwner) ||
                 TestContext.TestName == nameof(ContactsReadAll) ||
                 TestContext.TestName == nameof(ContactsReadWhereIn) ||
-                TestContext.TestName == nameof(GetQueryString)) { LoadJoinedData(); }
+                TestContext.TestName == nameof(RemoveSingleCustomer) ||
+                TestContext.TestName == nameof(GetQueryString)) 
+            {
 
+                LoadJoinedData();
+
+            }
+
+            
             if (TestContext.TestName == nameof(FilteredInclude))
             {
                 
@@ -107,6 +114,7 @@ namespace NorthWindCoreUnitTest_InMemory
         public static void ClassInitialize(TestContext testContext)
         {
             TestResults = new List<TestContext>();
+            
         }
 
         /// <summary>
@@ -165,6 +173,7 @@ namespace NorthWindCoreUnitTest_InMemory
 
             List<CustomerEntity> cust = await AllCustomersToJsonAsync();
             await File.WriteAllTextAsync(customersJsonFileName, JsonHelpers.Serialize<CustomerEntity>(cust));
+                  
 
             List<ContactType> contactTypes = context.ContactType.ToList();
             await File.WriteAllTextAsync(contactTypeJsonFileName, JsonHelpers.Serialize<ContactType>(contactTypes));
@@ -356,21 +365,27 @@ namespace NorthWindCoreUnitTest_InMemory
                 */
                 context.Customers.AddRange(MockedInMemoryCustomers());
 
-                var test1 = context.Contacts.ToList();
-
-                //context.Contacts.AddRange(MockedInMemoryContacts());
-                context.SaveChanges();
+                var savedCount = context.SaveChanges();
 
                 /*
                 * Find customer and contact
                 */
-                var customer = context.Customers.FirstOrDefault(
-                    cust => cust.CompanyName == companyName);
+                var customer = context.Customers.FirstOrDefault(cust => cust.CompanyName == companyName);
+                
 
+                /*
+                 * 10/22/2021
+                 * Learned the test on this method failed when running sole
+                 * Issue, missing contacts, fix, assert if there are contacts, if not add them
+                 */
+                if (!context.Contacts.Any())
+                {
+                    context.Contacts.AddRange(MockedInMemoryContacts());
+                    context.SaveChanges();
+                }
 
                 var contactList = context.Contacts.Where(x => x.ContactId < 20).ToList();
-                var contact = context.Contacts.FirstOrDefault(
-                    con => con.ContactId == customer.ContactId);
+                var contact = context.Contacts.FirstOrDefault(con => con.ContactId == customer.ContactId);
 
                 if (contact is not null)
                 {
@@ -393,7 +408,8 @@ namespace NorthWindCoreUnitTest_InMemory
                     /*
                      * Commit to in memory database
                      */
-                    context.SaveChanges();
+                    var saveCount = context.SaveChanges();
+                    Console.WriteLine();
 
                 }
 
