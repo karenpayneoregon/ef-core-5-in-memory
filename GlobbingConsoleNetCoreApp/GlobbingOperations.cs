@@ -14,19 +14,24 @@ namespace GlobbingConsoleNetCoreApp
 
         public static string SearchFolder => "C:\\Users\\paynek\\Documents\\Snagit\\";
 
+        /// <summary>
+        /// If <see cref="SearchFolder"/> does not exists, exit stage right :-)
+        /// </summary>
         public static void Sample1()
         {
+            if (!Directory.Exists(SearchFolder)) return;
+
             Matcher matcher = new();
             matcher.AddIncludePatterns(new[] { "*.pdf", "**/*.ico" });
 
-            
+
             PatternMatchingResult matchingResult = matcher.Execute(
                 new DirectoryInfoWrapper(new DirectoryInfo(SearchFolder)));
 
 
             if (matchingResult.HasMatches)
             {
-                
+
                 foreach (var file in matchingResult.Files)
                 {
                     Debug.WriteLine(file.Path);
@@ -39,7 +44,7 @@ namespace GlobbingConsoleNetCoreApp
             {
                 Debug.WriteLine("No matches");
             }
-           
+
 
         }
 
