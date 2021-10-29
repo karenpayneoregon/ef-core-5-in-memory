@@ -55,7 +55,7 @@ namespace EntityFrameworkCoreDbExtensions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 297);
+            this.ClientSize = new System.Drawing.Size(450, 300);
             this.Controls.Add(this.ColumnNamesListBox);
             this.Controls.Add(this.ModelNamesListBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

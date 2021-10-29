@@ -18,6 +18,7 @@ namespace NorthWindCoreUnitTest_InMemory.DataProvider
 
         public static (List<Contract>, Exception exception) ReadJsonView(string firstNameValue)
         {
+            // ReSharper disable once RedundantAssignment
             List<Contract> contracts = new();
             var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Json", "LotsOfData.json");
             var json = File.ReadAllText(fileName);

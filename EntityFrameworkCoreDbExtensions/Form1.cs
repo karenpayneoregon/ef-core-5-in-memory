@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EntityCoreExtensions;
+using EntityFrameworkCoreDbExtensions.Classes;
 using NorthWindCoreLibrary.Data;
 using NorthWindCoreLibrary.Models;
 
@@ -23,7 +24,7 @@ namespace EntityFrameworkCoreDbExtensions
             Shown += OnShown;
         }
 
-        private void OnShown(object? sender, EventArgs e)
+        private void OnShown(object sender, EventArgs e)
         {
             using var context = new NorthwindContext();
 
@@ -49,11 +50,11 @@ namespace EntityFrameworkCoreDbExtensions
 
         private void ModelPositionChanged()
         {
-            if (_modelsBindingSource.CurrentIsValid())
-            {
-                using var context = new NorthwindContext();
-                ColumnNamesListBox.DataSource = context.ColumnNames(ModelNamesListBox.Text).OrderBy(column => column).ToList();
-            }
+            if (!_modelsBindingSource.CurrentIsValid()) return;
+
+            using var context = new NorthwindContext();
+            ColumnNamesListBox.DataSource = context.ColumnNames(ModelNamesListBox.Text).OrderBy(column => column).ToList();
         }
+
     }
 }

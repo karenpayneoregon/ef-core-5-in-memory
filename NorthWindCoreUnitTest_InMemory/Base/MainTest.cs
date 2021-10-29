@@ -263,6 +263,7 @@ namespace NorthWindCoreUnitTest_InMemory
             Context.ContactDevices.AddRange(contactDevicesList);
             Context.PhoneType.AddRange(phoneTypesList);
             
+            // ReSharper disable once UnusedVariable
             var count = Context.SaveChanges();
         }
 

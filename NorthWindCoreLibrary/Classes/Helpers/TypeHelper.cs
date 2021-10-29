@@ -21,7 +21,7 @@ namespace NorthWindCoreLibrary.Classes.Helpers
             Type type = senderType.GetType();
             PropertyInfo[] propertyInfo = type.GetProperties();
 
-            List<string> nameList = new List<string>();
+            List<string> nameList = new();
 
             string[] excludeNames = {"Projection", "CountryIdentifier"};
             

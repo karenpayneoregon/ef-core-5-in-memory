@@ -86,13 +86,10 @@ namespace NorthWindCoreUnitTest_InMemory
         {
             Customers customer = new() { CompanyName = "ABC" };
 
-            using (var context = new NorthwindContext())
-            {
-                context.Entry(customer).State = EntityState.Added;
-                context.Customers.Add(new Customers() { CompanyName = "DEF" });
-                context.SaveChanges();
-            }
-
+            using var context = new NorthwindContext();
+            context.Entry(customer).State = EntityState.Added;
+            context.Customers.Add(new Customers() { CompanyName = "DEF" });
+            context.SaveChanges();
         }
         /// <summary>
         /// Get all customers from Mexico
@@ -335,7 +332,7 @@ namespace NorthWindCoreUnitTest_InMemory
                 Debug.WriteLine("");
             }
 
-            List<string> expected = new List<string>() { "(5) 555-4729", "(5) 555-4729", "456-987-1234" };
+            List<string> expected = new() { "(5) 555-4729", "(5) 555-4729", "456-987-1234" };
 
             var phones = singleCustomer.Contact.ContactDevices.Select(x => x.PhoneNumber).ToList();
 
@@ -348,7 +345,7 @@ namespace NorthWindCoreUnitTest_InMemory
         public void GetModelNamesTest()
         {
 
-            List<string> modelNamesExpected = new List<string>()
+            List<string> modelNamesExpected = new()
             {
                 "BusinessEntityPhone", "Categories", "ContactDevices", "Contacts", "ContactType", "Countries",
                 "Customers", "Employees", "EmployeeTerritories", "OrderDetails", "Orders", "PhoneType",
