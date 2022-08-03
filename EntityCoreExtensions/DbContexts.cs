@@ -23,10 +23,9 @@ namespace EntityCoreExtensions
         /// </summary>
         /// <param name="context"><see cref="DbContext"/></param>
         /// <returns>List&lt;<see cref="Type"/>> for each model</returns>
-        public static List<Type> ModelTypeInformation(this DbContext context)
-        {
-            return context.Model.GetEntityTypes().Select(entityType => entityType.ClrType).ToList();
-        }
+        public static List<Type> ModelTypeInformation(this DbContext context) 
+            => context.Model.GetEntityTypes().Select(entityType => entityType.ClrType).ToList();
+
         /// <summary>
         /// Get details for a model
         /// </summary>
@@ -139,6 +138,14 @@ namespace EntityCoreExtensions
             }).ToList();
 
         }
+
+        public static string GetTableNameBasic(this DbContext context, Type modelType)
+        {
+            var entityType = context.Model.FindEntityType(modelType);
+            var schema = entityType.GetDefaultSchema();
+            return $"{schema ?? "(unknown)"}.{entityType.GetTableName()}";
+        }
+
     }
 
 }

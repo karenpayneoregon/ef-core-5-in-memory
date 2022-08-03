@@ -9,6 +9,7 @@ using NorthWindCoreLibrary.Classes.North.Classes;
 using NorthWindCoreLibrary.Data;
 using NorthWindCoreLibrary.Models;
 using NorthWindCoreLibrary.Projections;
+using Customers = NorthWindCoreLibrary.Models.Customers;
 
 
 namespace NorthWindCoreLibrary.Classes

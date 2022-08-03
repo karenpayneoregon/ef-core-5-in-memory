@@ -3,6 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using NorthWindCoreLibrary.LanguageExtensions;
 using NorthWindCoreLibrary.Models;
+using Customers = NorthWindCoreLibrary.Models.Customers;
 
 namespace NorthWindCoreLibrary.Projections
 {

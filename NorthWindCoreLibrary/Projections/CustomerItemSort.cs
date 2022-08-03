@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 using NorthWindCoreLibrary.Models;
+using Customers = NorthWindCoreLibrary.Models.Customers;
 
 namespace NorthWindCoreLibrary.Projections
 {
@@ -20,6 +21,10 @@ namespace NorthWindCoreLibrary.Projections
         public string Country { get; set; }
         public override string ToString() => CompanyName;
 
+        /// <summary>
+        /// Pass in Customers
+        /// Return CustomerItemSort
+        /// </summary>
         public static Expression<Func<Customers, CustomerItemSort>> Projection
         {
             get

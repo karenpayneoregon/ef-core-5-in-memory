@@ -35,6 +35,7 @@ namespace NorthWindCoreLibrary.Classes.Helpers
             await context.Database.CloseConnectionAsync();
             await context.Database.OpenConnectionAsync();
         }
+
         public static async Task<bool> TestConnectionTask(this DbContext context)
             => await Task.Run(async () => await context.Database.CanConnectAsync());
 

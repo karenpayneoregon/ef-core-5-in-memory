@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NorthWindCoreLibrary.Models;
+using Customers = NorthWindCoreLibrary.Models.Customers;
 
 namespace NorthWindCoreLibrary.LanguageExtensions
 {

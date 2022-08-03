@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using NorthWindCoreLibrary.Models;
+using Customers = NorthWindCoreLibrary.Models.Customers;
 
 namespace NorthWindCoreUnitTest_InMemory.ValidationClasses
 {
