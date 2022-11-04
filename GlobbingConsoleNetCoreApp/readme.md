@@ -8,4 +8,4 @@ In [this article](https://docs.microsoft.com/en-us/dotnet/core/extensions/file-g
 
 ---
 
-**This project is not part of class**
+**This project is not part of ef core code and testing**
