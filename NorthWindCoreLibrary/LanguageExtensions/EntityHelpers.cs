@@ -13,6 +13,30 @@ namespace NorthWindCoreLibrary.LanguageExtensions
 {
     public static class EntityHelpers
     {
+
+        public static string GetTableNameWithScheme<T>(this DbContext context) where T : class
+        {
+            var entityType = context.Model.FindEntityType(typeof(T));
+            var schema = entityType.GetDefaultSchema();
+            return $"{schema ?? "(unknown)"}.{entityType.GetTableName()}";
+        }
+
+        //public static string GetTableInfo<T>(this DbSet<T> dbset) where T : class
+        //{
+        //    using var context = new NorthwindContext();
+        //    var entityType = context.Model.FindEntityType(dbset.GetType());
+        //    var schema = entityType.GetDefaultSchema();
+        //    return $"{schema ?? "(unknown)"}.{entityType.GetTableName()}";
+        //}
+
+        //public static string GetTableSchema<T>(this DbSet<T> dbset) where T : class
+        //{
+        //    using var context = new NorthwindContext();
+        //    var entityType = context.Model.FindEntityType(dbset.GetType());
+        //    var schema = entityType.GetDefaultSchema();
+        //    return $"{schema ?? "(unknown)"}.{entityType.GetTableName()}";
+        //}
+
         private static readonly MethodInfo ContainsMethod = typeof(Enumerable).GetMethods()
             .FirstOrDefault(methodInfo => methodInfo.Name == "Contains" && methodInfo.GetParameters().Length == 2)
             .MakeGenericMethod(typeof(object));
@@ -63,3 +87,5 @@ namespace NorthWindCoreLibrary.LanguageExtensions
 
     }
 }
+
+

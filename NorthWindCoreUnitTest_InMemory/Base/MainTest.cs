@@ -14,6 +14,7 @@ using NorthWindCoreLibrary.Data;
 using NorthWindCoreLibrary.Models;
 using NorthWindCoreLibrary.Projections;
 using NorthWindCoreUnitTest_InMemory.ValidationClasses;
+using Customers = NorthWindCoreLibrary.Models.Customers;
 
 
 // ReSharper disable once CheckNamespace - do not change
@@ -58,25 +59,25 @@ namespace NorthWindCoreUnitTest_InMemory
 
             annihilationList = new List<object>();
 
-            if (TestContext.TestName == nameof(LoadingRelations) ||
-                TestContext.TestName == nameof(LoadingTheSinkRelations) ||
-                TestContext.TestName == nameof(FindByPrimaryKey) ||
-                TestContext.TestName == nameof(CustomerCustomSort_City) ||
-                TestContext.TestName == nameof(CustomersRemoveRange) ||
-                TestContext.TestName == nameof(CustomerReadAll) ||
-                TestContext.TestName == nameof(CustomerReadWhereCountryIsMexico) ||
-                TestContext.TestName == nameof(CustomerReadWhereCountryIsMexicoAndIsOwner) ||
-                TestContext.TestName == nameof(ContactsReadAll) ||
-                TestContext.TestName == nameof(ContactsReadWhereIn) ||
-                TestContext.TestName == nameof(RemoveSingleCustomer) ||
-                TestContext.TestName == nameof(GetQueryString)) 
+            if (TestContext.TestName is nameof(LoadingRelations) or 
+                nameof(LoadingTheSinkRelations) or 
+                nameof(FindByPrimaryKey) or 
+                nameof(CustomerCustomSort_City) or 
+                nameof(CustomersRemoveRange) or 
+                nameof(CustomerReadAll) or 
+                nameof(CustomerReadWhereCountryIsMexico) or 
+                nameof(CustomerReadWhereCountryIsMexicoAndIsOwner) or 
+                nameof(ContactsReadAll) or 
+                nameof(ContactsReadWhereIn) or 
+                nameof(RemoveSingleCustomer) or 
+                nameof(GetQueryString))
             {
 
                 LoadJoinedData();
 
             }
 
-            
+
             if (TestContext.TestName == nameof(FilteredInclude))
             {
                 
@@ -375,7 +376,7 @@ namespace NorthWindCoreUnitTest_InMemory
                 
 
                 /*
-                 * 10/22/2021
+                 * KP 10/22/2021
                  * Learned the test on this method failed when running sole
                  * Issue, missing contacts, fix, assert if there are contacts, if not add them
                  */

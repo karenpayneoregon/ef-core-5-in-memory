@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NorthWindCoreLibrary.Data.Interceptors;
 using NorthWindCoreLibrary.Models;
+using Customers = NorthWindCoreLibrary.Models.Customers;
 
 #nullable disable
 
@@ -79,7 +80,7 @@ namespace NorthWindCoreLibrary.Data
             {
                 // how we normally do a connection with scaffolding 
                 //optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=NorthWind2020;Integrated Security=True");
-
+                
                 StandardConnection(optionsBuilder);
 
             }
@@ -139,7 +140,8 @@ namespace NorthWindCoreLibrary.Data
 
             // Only customers from Germany
             //modelBuilder.Entity<Customers>().HasQueryFilter(customer => customer.CountryIdentifier == 9);
-
+            modelBuilder.HasDefaultSchema("dbo");
+            
             OnModelCreatingPartial(modelBuilder);
         }
 

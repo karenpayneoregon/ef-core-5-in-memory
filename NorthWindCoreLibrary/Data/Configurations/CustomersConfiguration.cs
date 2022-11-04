@@ -9,9 +9,9 @@ using System;
 
 namespace NorthWindCoreLibrary.Data
 {
-    public class CustomersConfiguration : IEntityTypeConfiguration<Customers>
+    public class CustomersConfiguration : IEntityTypeConfiguration<Models.Customers>
     {
-        public void Configure(EntityTypeBuilder<Customers> entity)
+        public void Configure(EntityTypeBuilder<Models.Customers> entity)
         {
             entity.HasKey(e => e.CustomerIdentifier)
                 .HasName("PK_Customers_1");
@@ -28,12 +28,12 @@ namespace NorthWindCoreLibrary.Data
 
             entity.Property(e => e.City)
                 .HasMaxLength(15)
-                .HasComment("City");
+                .HasComment("City name");
 
             entity.Property(e => e.CompanyName)
                 .IsRequired()
                 .HasMaxLength(40)
-                .HasComment("Company");
+                .HasComment("Company name");
 
             entity.Property(e => e.ContactId).HasComment("ContactId");
 

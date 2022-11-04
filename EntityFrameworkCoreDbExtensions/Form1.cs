@@ -12,23 +12,26 @@ using EntityCoreExtensions;
 using EntityFrameworkCoreDbExtensions.Classes;
 using NorthWindCoreLibrary.Data;
 using NorthWindCoreLibrary.Models;
+using Customers = NorthWindCoreLibrary.Models.Customers;
 
 namespace EntityFrameworkCoreDbExtensions
 {
     public partial class Form1 : Form
     {
         private readonly BindingSource _modelsBindingSource = new ();
+
         public Form1()
         {
             InitializeComponent();
             Shown += OnShown;
         }
 
-        private void OnShown(object sender, EventArgs e)
-        {
-            using var context = new NorthwindContext();
 
-            _modelsBindingSource.DataSource = context.GetModelNames().OrderBy(x => x).ToList();
+        private async void OnShown(object sender, EventArgs e)
+        {
+
+            _modelsBindingSource.DataSource = await GetModelNamesTask();
+
             ModelNamesListBox.DataSource = _modelsBindingSource;
             _modelsBindingSource.PositionChanged += ModelsBindingSourceOnPositionChanged;
 
@@ -40,6 +43,21 @@ namespace EntityFrameworkCoreDbExtensions
             }
 
             ModelPositionChanged();
+
+        }
+
+        /// <summary>
+        /// - Using a Task keeps the form responsive.
+        /// - Not always wise, learn from experience
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<string>> GetModelNamesTask()
+        {
+            return await Task.Run(async () =>
+            {
+                await using var context = new NorthwindContext();
+                return context.GetModelNames().OrderBy(x => x).ToList() ;
+            });
 
         }
 

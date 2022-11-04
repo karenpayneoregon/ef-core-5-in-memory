@@ -9,7 +9,6 @@ using EntityCoreExtensions;
 using FluentValidation.Results;
 using FluentValidation.TestHelper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NorthWindCoreLibrary.Classes;
 using NorthWindCoreLibrary.Classes.Helpers;
@@ -18,7 +17,7 @@ using NorthWindCoreLibrary.LanguageExtensions;
 using NorthWindCoreLibrary.Models;
 using NorthWindCoreUnitTest_InMemory.Base;
 using NorthWindCoreUnitTest_InMemory.DataProvider;
-using NorthWindCoreUnitTest_InMemory.ValidationClasses;
+
 using Customers = NorthWindCoreLibrary.Models.Customers;
 
 namespace NorthWindCoreUnitTest_InMemory
@@ -357,7 +356,7 @@ namespace NorthWindCoreUnitTest_InMemory
             CollectionAssert.AreEqual(modelNames, modelNamesExpected);
 
             // must have permissions to read SQL-Server
-            //CollectionAssert.AreEqual(modelNames,SqlOperations.TableNames());
+            CollectionAssert.AreEqual(modelNames,SqlOperations.TableNames());
 
         }
 
@@ -390,6 +389,7 @@ namespace NorthWindCoreUnitTest_InMemory
             var columns = SqlOperations.ColumnNamesForTable(modelName);
             CollectionAssert.AreEqual(columns, expectedColumnList);
 
+            Console.WriteLine();
         }
 
 
@@ -479,7 +479,7 @@ namespace NorthWindCoreUnitTest_InMemory
         [TestTraits(Trait.AccessTrackedEntities)]
         public void FindByPrimaryKey()
         {
-            var customer = Context.Customers.Find(3);
+            var customer =  Context.Customers.Find(3);
             Assert.IsTrue(customer.CompanyName == "Antonio Moreno Taquería");
         }
 
@@ -689,7 +689,6 @@ namespace NorthWindCoreUnitTest_InMemory
 
 
         }
-
         #endregion
 
         #region fluent validation https://docs.fluentvalidation.net/en/latest/built-in-validators.html
