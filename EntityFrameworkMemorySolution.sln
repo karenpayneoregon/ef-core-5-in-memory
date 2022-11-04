@@ -28,6 +28,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetEntityInformation", "Get
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackWinFormsApp", "StackWinFormsApp\StackWinFormsApp.csproj", "{73D52B8A-696B-4ECD-B6E4-BA24480AFB4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetEntityInformation", "GetEntityInformation\GetEntityInformation.csproj", "{3A3083FB-B896-4612-8304-023B95FC525D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
