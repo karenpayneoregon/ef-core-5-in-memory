@@ -13,6 +13,7 @@ Examples for `unit testing` Entity Framework Core 5 with `mocking` using `in mem
 :thumbsup: When adding a new test method once validated run all test methods to ensure no breakage
 
 </br>
+
 ---
 
 ## NuGet packages

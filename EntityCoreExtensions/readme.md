@@ -4,7 +4,7 @@ Contains several extension methods for [DbContext](https://docs.microsoft.com/en
 
 ![img](https://img.shields.io/badge/Karen%20Payne-MVP-lightgrey)
 
-![ver](../assets/Versions.png) ![ef](../assets/efcore.png) 
+
 
 
 
